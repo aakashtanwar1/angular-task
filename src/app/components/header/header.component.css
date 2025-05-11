@@ -1,176 +1,174 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(90deg, #1e90ff, #3b8beb);
-    padding: 16px 32px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .nav-item {
-    display: flex;
-    align-items: center;
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin: 0 32px;
-    color: #fff;
-  
-    a {
-      text-decoration: none;
-      color: #000;
-      padding: 6px 12px;
-      border-radius: 8px;
-      transition: background-color 0.3s, color 0.3s, transform 0.2s;
-  
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.3);
-        transform: scale(1.05);
-      }
-  
-      &.active {
-        color: #fff;
-        background-color: #0a66c2;
-      }
-    }
-  
-    .badge {
-      background-color: #555;
-      color: white;
-      border-radius: 50%;
-      width: 24px;
-      height: 24px;
-      text-align: center;
-      line-height: 24px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      margin-left: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-      animation: pop-in 0.3s ease-out;
-    }
-  }
-  
-  @keyframes pop-in {
-    0% {
-      transform: scale(0.6);
-      opacity: 0;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #1e90ff, #3b8beb);
+  padding: 16px 32px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-   .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 15px;
+.nav-item {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 32px;
+  color: #fff;
+
+  a {
+    text-decoration: none;
+    color: #000;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    &.active {
+      color: #fff;
+      background-color: #0a66c2;
+    }
   }
-  
-  .controls {
-    display: flex;
-    gap: 10px;
-    margin: 20px 0;
-  }
-  
-  .btn {
-    padding: 8px 20px;
-    border: none;
-    border-radius: 4px;
+
+  .badge {
+    background-color: #555;
     color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
-  }
-  
-  .btn:hover {
-    transform: translateY(-1px);
-  }
-  
-  .btn:active {
-    transform: translateY(1px);
-  }
-  
-  .reset-btn {
-    background-color: #0d6efd;
-  }
-  
-  .reset-btn:hover {
-    background-color: #0b5ed7;
-  }
-  
-  .add-btn {
-    background-color: #0d6efd;
-  }
-  
-  .add-btn:hover {
-    background-color: #0b5ed7;
-  }
-  
-  .counters-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  @media (max-width: 600px) {
-    .container {
-      padding: 0 10px;
-    }
-    
-    .controls {
-      justify-content: center;
-    }
-  }
-
-
-  .navbar {
-    background-color: #0d6efd;
-    color: white;
-    padding: 15px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .navbar-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 15px;
-    display: flex;
-    align-items: center;
-  }
-  
-  h1 {
-    margin: 0;
-    font-size: 1.8rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .counter-badge {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    font-size: 1.1rem;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 0.9rem;
     font-weight: bold;
+    margin-left: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    animation: pop-in 0.3s ease-out;
   }
-  
-  @media (max-width: 600px) {
-    .navbar-content {
-      justify-content: center;
-    }
-    
-    h1 {
-      font-size: 1.5rem;
-    }
-    
-    .counter-badge {
-      width: 25px;
-      height: 25px;
-      font-size: 0.9rem;
-    }
+}
+
+@keyframes pop-in {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
   }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.reset-btn {
+  background-color: #0d6efd;
+}
+
+.reset-btn:hover {
+  background-color: #0b5ed7;
+}
+
+.add-btn {
+  background-color: #0d6efd;
+}
+
+.add-btn:hover {
+  background-color: #0b5ed7;
+}
+
+.counters-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .controls {
+    justify-content: center;
+  }
+}
+
+.navbar {
+  background-color: #0d6efd;
+  color: white;
+  padding: 15px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.counter-badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .navbar-content {
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .counter-badge {
+    width: 25px;
+    height: 25px;
+    font-size: 0.9rem;
+  }
+}

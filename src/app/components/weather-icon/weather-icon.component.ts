@@ -6,28 +6,28 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './weather-icon.component.html',
-  styleUrl: './weather-icon.component.css'
+  styleUrl: './weather-icon.component.css',
 })
 export class WeatherIconComponent {
   @Input() weather: string = '';
   @Input() icon: string = '';
   @Input() large: boolean = false;
-  
+
   private iconUrl: string = '';
-  
+
   ngOnChanges(): void {
     this.updateIcon();
   }
-  
+
   getIconUrl(): string {
     return `url(${this.iconUrl})`;
   }
-  
+
   private updateIcon(): void {
     const iconName = this.icon || this.mapWeatherToIcon(this.weather);
     this.iconUrl = `https://www.amcharts.com/wp-content/themes/amcharts4/css/img/icons/weather/animated/${iconName}.svg`;
   }
-  
+
   private mapWeatherToIcon(weather: string): string {
     switch (weather.toLowerCase()) {
       case 'clear':

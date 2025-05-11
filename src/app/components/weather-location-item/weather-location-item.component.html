@@ -1,26 +1,24 @@
-<div 
-class="location-item" 
-[ngClass]="{'selected': isSelected}"
-(click)="onSelect()"
->
-<div class="location-info">
-  <div class="location-name">{{ location.name }}</div>
-  <div class="location-weather">
-    {{ location.temperature }}{{ location.unit }} {{ location.weather }}
+<div class="location-item" [ngClass]="{'selected': isSelected}" (click)="onSelect()">
+  <div class="location-info">
+    <div class="location-name">{{ location.name }}</div>
+    <div class="location-weather">
+      {{ location.temperature }}{{ location.unit }} {{ location.weather }}
+    </div>
   </div>
-</div>
 
-<div class="location-actions">
-  <button class="icon-btn refresh-btn" (click)="onRefresh($event)">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
-    </svg>
-  </button>
-  <button class="icon-btn remove-btn" (click)="onRemove($event)">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="18" y1="6" x2="6" y2="18"></line>
-      <line x1="6" y1="6" x2="18" y2="18"></line>
-    </svg>
-  </button>
-</div>
+  <div class="location-actions">
+    <button class="icon-btn refresh-btn" (click)="onRefresh($event)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" />
+      </svg>
+    </button>
+    <button class="icon-btn remove-btn" (click)="onRemove($event)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
 </div>

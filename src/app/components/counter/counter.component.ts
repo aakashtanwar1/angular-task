@@ -1,41 +1,46 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Counter } from '../../models/counter.model';
-
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import {
+  addCounter,
+  removeCounter,
+  resetCounters,
+  incrementCounter,
+  decrementCounter,
+} from '../../store/counter/counter.actions';
+import { selectCounters } from '../../store/counter/counter.selecetor';
+import { Counter } from '../../store/counter/counter.reducer';
 
 @Component({
   selector: 'app-counter',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './counter.component.html',
-  styleUrl: './counter.component.css'
+  styleUrl: './counter.component.css',
 })
 export class CounterComponent {
-  counters: Counter[] = [];
-  counterCount: number = 0;
-  addCounter(): void {
-    // Generate a random number between 1 and 30 for new counters
-    const randomValue = Math.floor(Math.random() * 30) + 1;
-    this.counters.push({ id: Date.now(), value: randomValue });
+  counters$: Observable<Counter[]> = this.store.select(selectCounters);
+
+  constructor(private store: Store) {}
+
+  addCounter() {
+    this.store.dispatch(addCounter());
   }
 
-  resetCounters(): void {
-    this.counters = [];
+  removeCounter(id: number) {
+    this.store.dispatch(removeCounter({ id }));
   }
 
-  deleteCounter(id: number): void {
-    this.counters = this.counters.filter(counter => counter.id !== id);
+  reset() {
+    this.store.dispatch(resetCounters());
   }
 
-  incrementCounter(id: number): void {
-    this.counters = this.counters.map(counter =>
-      counter.id === id ? { ...counter, value: counter.value + 1 } : counter
-    );
-  }
-  decrementCounter(id: number): void {
-    this.counters = this.counters.map(counter =>
-      counter.id === id ? { ...counter, value: counter.value - 1 } : counter
-    );
+  increment(id: number) {
+    this.store.dispatch(incrementCounter({ id }));
   }
 
+  decrement(id: number) {
+    this.store.dispatch(decrementCounter({ id }));
+  }
 }

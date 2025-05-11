@@ -1,44 +1,45 @@
 <div class="detail-panel" *ngIf="selectedLocation$ | async as location; else noLocation">
-    <div class="location-header">
-      <h2>{{ location.name }}</h2>
-      <button class="refresh-btn" (click)="refreshForecast()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
-        </svg>
-      </button>
+  <div class="location-header">
+    <h2>{{ location.name }}</h2>
+    <button class="refresh-btn" (click)="refreshForecast()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="current-weather">
+    <div class="weather-icon-container">
+      <app-weather-icon [weather]="location.weather" [large]="true"></app-weather-icon>
     </div>
-    
-    <div class="current-weather">
-      <div class="weather-icon-container">
-        <app-weather-icon [weather]="location.weather" [large]="true"></app-weather-icon>
-      </div>
-      
-      <div class="current-info">
-        <div class="current-temp">{{ location.temperature }}{{ location.unit }}</div>
-        <div class="current-desc">{{ location.weather }}</div>
-        <div class="current-desc" *ngIf="weatherDetails">
-          <div class="detail-item">Wind: {{ weatherDetails.wind }} deg</div>
-          <div class="detail-item">Pressure: {{ weatherDetails.pressure }}</div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="forecast-container" *ngIf="forecast$ | async as forecast">
-      <div class="forecast-title">5-Day Forecast</div>
-      <div class="forecast-days">
-        <div class="forecast-day" *ngFor="let day of forecast">
-          <div class="day-name">{{ day.day }}</div>
-          <div class="day-icon">
-            <app-weather-icon [icon]="day.icon"></app-weather-icon>
-          </div>
-          <div class="day-temp">{{ day.temperature }}°C</div>
-        </div>
+
+    <div class="current-info">
+      <div class="current-temp">{{ location.temperature }}{{ location.unit }}</div>
+      <div class="current-desc">{{ location.weather }}</div>
+      <div class="current-desc" *ngIf="weatherDetails">
+        <div class="detail-item">Wind: {{ weatherDetails.wind }} deg</div>
+        <div class="detail-item">Pressure: {{ weatherDetails.pressure }}</div>
       </div>
     </div>
   </div>
-  
-  <ng-template #noLocation>
-    <div class="no-location">
-      <p>Select a location to view detailed weather information</p>
+
+  <div class="forecast-container" *ngIf="forecast$ | async as forecast">
+    <div class="forecast-title">5-Day Forecast</div>
+    <div class="forecast-days">
+      <div class="forecast-day" *ngFor="let day of forecast">
+        <div class="day-name">{{ day.day }}</div>
+        <div class="day-icon">
+          <app-weather-icon [icon]="day.icon"></app-weather-icon>
+        </div>
+        <div class="day-temp">{{ day.temperature }}°C</div>
+      </div>
     </div>
-  </ng-template>
+  </div>
+</div>
+
+<ng-template #noLocation>
+  <div class="no-location">
+    <p>Select a location to view detailed weather information</p>
+  </div>
+</ng-template>

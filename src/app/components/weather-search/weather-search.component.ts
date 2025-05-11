@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
   standalone: true,
   imports: [NgIf, NgFor, FormsModule, WeatherLocationItemComponent],
   templateUrl: './weather-search.component.html',
-  styleUrl: './weather-search.component.css'
+  styleUrl: './weather-search.component.css',
 })
 export class WeatherSearchComponent {
   cityName = '';
@@ -23,7 +23,7 @@ export class WeatherSearchComponent {
     private weatherService: WeatherService,
     private locationService: LocationService
   ) {
-    this.locationService.locations$.subscribe(locations => {
+    this.locationService.locations$.subscribe((locations) => {
       this.locations = locations;
     });
   }
@@ -35,35 +35,37 @@ export class WeatherSearchComponent {
     }
 
     this.errorMessage = '';
-    this.weatherService.getWeatherByCity(this.cityName.trim()).subscribe(data => {
-      if (data) {
-        const newLocation: Location = {
-          id: uuidv4(),
-          name: data.name,
-          temperature: Math.round(data.main.temp),
-          unit: '°C',
-          weather: data.weather[0].main,
-          timestamp: Date.now()
-        };
-        
-        this.locationService.addLocation(newLocation);
-        this.cityName = '';
-      } else {
-        this.errorMessage = `City "${this.cityName}" not found`;
-      }
-    });
+    this.weatherService
+      .getWeatherByCity(this.cityName.trim())
+      .subscribe((data) => {
+        if (data) {
+          const newLocation: Location = {
+            id: uuidv4(),
+            name: data.name,
+            temperature: Math.round(data.main.temp),
+            unit: '°C',
+            weather: data.weather[0].main,
+            timestamp: Date.now(),
+          };
+
+          this.locationService.addLocation(newLocation);
+          this.cityName = '';
+        } else {
+          this.errorMessage = `City "${this.cityName}" not found`;
+        }
+      });
   }
 
   refreshLocation(location: Location): void {
-    this.weatherService.getWeatherByCity(location.name).subscribe(data => {
+    this.weatherService.getWeatherByCity(location.name).subscribe((data) => {
       if (data) {
         const updatedLocation: Location = {
           ...location,
           temperature: Math.round(data.main.temp),
           weather: data.weather[0].main,
-          timestamp: Date.now()
+          timestamp: Date.now(),
         };
-        
+
         this.locationService.addLocation(updatedLocation);
       }
     });

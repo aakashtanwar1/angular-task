@@ -7,8 +7,6 @@ import { WeatherDetailComponent } from '../weather-detail/weather-detail.compone
   standalone: true,
   imports: [WeatherSearchComponent, WeatherDetailComponent],
   templateUrl: './weather.component.html',
-  styleUrl: './weather.component.css'
+  styleUrl: './weather.component.css',
 })
-export class WeatherComponent {
-
-}
+export class WeatherComponent {}

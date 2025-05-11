@@ -1,56 +1,63 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, of } from 'rxjs';
-import { WeatherData, ForecastData, DailyForecast } from '../models/weather.model';
+import {
+  WeatherData,
+  ForecastData,
+  DailyForecast,
+} from '../models/weather.model';
+import { environment } from '../../environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WeatherService {
-  private apiKey = 'd4594364698122bfd1c4b3eb5f2ff19f';
-  private apiUrl = 'https://api.openweathermap.org/data/2.5';
+  private apiKey = environment.API_KEY;
+  private apiUrl = environment.BASE_URL;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getWeatherByCity(city: string): Observable<WeatherData | null> {
-    return this.http.get<WeatherData>(
-      `${this.apiUrl}/weather?q=${city}&units=metric&appid=${this.apiKey}`
-    ).pipe(
-      catchError(() => of(null))
-    );
+    return this.http
+      .get<WeatherData>(
+        `${this.apiUrl}/weather?q=${city}&units=metric&appid=${this.apiKey}`
+      )
+      .pipe(catchError(() => of(null)));
   }
 
   getForecastByCity(city: string): Observable<DailyForecast[]> {
-    return this.http.get<ForecastData>(
-      `${this.apiUrl}/forecast?q=${city}&units=metric&appid=${this.apiKey}`
-    ).pipe(
-      map(response => this.processForecastData(response)),
-      catchError(() => of([]))
-    );
+    return this.http
+      .get<ForecastData>(
+        `${this.apiUrl}/forecast?q=${city}&units=metric&appid=${this.apiKey}`
+      )
+      .pipe(
+        map((response) => this.processForecastData(response)),
+        catchError(() => of([]))
+      );
   }
 
   private processForecastData(data: ForecastData): DailyForecast[] {
     const dailyData = new Map<string, DailyForecast>();
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    
+
     // Group by day and take midday forecast
-    data.list.forEach(item => {
+    data.list.forEach((item) => {
       const date = new Date(item.dt * 1000);
       const dayKey = date.toISOString().split('T')[0];
-      
+
       // Use the forecast around midday for each day
       const hour = date.getHours();
-      if (hour >= 11 && hour <= 14 || !dailyData.has(dayKey)) {
+      if ((hour >= 11 && hour <= 14) || !dailyData.has(dayKey)) {
         dailyData.set(dayKey, {
           date: date,
           day: days[date.getDay()],
           temperature: Math.round(item.main.temp),
           weather: item.weather[0].main,
-          icon: this.getWeatherIconClass(item.weather[0].id)
+          icon: this.getWeatherIconClass(item.weather[0].id),
         });
       }
     });
-    
+
     // Convert map to array and sort by date
     return Array.from(dailyData.values())
       .sort((a, b) => a.date.getTime() - b.date.getTime())
