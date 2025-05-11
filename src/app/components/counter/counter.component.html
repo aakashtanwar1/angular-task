@@ -1,0 +1,20 @@
+<div class="counter-main">
+<div class="controls">
+    <button class="btn reset-btn" (click)="resetCounters()">Reset</button>
+    <button class="btn add-btn" (click)="addCounter()">Add</button>
+  </div>
+  
+  <div class="counters-container">
+    <div *ngFor="let counter of counters">
+        <div class="counter-row">
+            <div class="counter-value">{{ counter.value }}</div>
+            <div class="counter-actions">
+              <button class="btn increment-btn" (click)="incrementCounter(counter.id)">Increment</button>
+              <button class="btn decrement-btn" (click)="decrementCounter(counter.id)">Decrement</button>
+              <button class="btn delete-btn" (click)="deleteCounter(counter.id)">Delete</button>
+            </div>
+          </div>
+    </div>
+  </div>
+  </div>
+

@@ -1,0 +1,37 @@
+<div class="search-panel">
+    <div class="search-container">
+      <input
+        type="text"
+        [(ngModel)]="cityName"
+        placeholder="Type city name"
+        (keyup.enter)="searchCity()"
+      />
+      <button class="add-btn" (click)="searchCity()">+</button>
+    </div>
+    
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+    
+    <div class="recent-locations">
+      <h3>Recent locations</h3>
+      <div class="locations-list" *ngIf="locations.length > 0">
+        <app-weather-location-item
+          *ngFor="let location of locations"
+          [location]="location"
+          (refresh)="refreshLocation($event)"
+          (remove)="removeLocation($event)"
+          (select)="selectLocation($event)"
+        ></app-weather-location-item>
+      </div>
+      <div *ngIf="locations.length === 0" class="no-locations">
+        No locations added yet
+      </div>
+    </div>
+    
+    <div class="actions">
+      <button class="clear-btn" (click)="clearLocations()" [disabled]="locations.length === 0">
+        Clear
+      </button>
+    </div>
+  </div>

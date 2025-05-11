@@ -1,0 +1,150 @@
+.counter-main{
+ margin: 50px;
+}
+.counter-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+  }
+  
+  .counter-value {
+    background-color: #0d6efd;
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .counter-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-grow: 1;
+  }
+  
+  .btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+  
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+  
+  .btn:active {
+    transform: translateY(1px);
+  }
+  
+  .increment-btn, .decrement-btn {
+    background-color: #6c757d;
+  }
+  
+  .increment-btn:hover, .decrement-btn:hover {
+    background-color: #5a6268;
+  }
+  
+  .delete-btn {
+    background-color: #dc3545;
+  }
+  
+  .delete-btn:hover {
+    background-color: #c82333;
+  }
+  
+  @media (max-width: 600px) {
+    .counter-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .counter-value {
+      align-self: flex-start;
+    }
+    
+    .counter-actions {
+      justify-content: space-between;
+    }
+    
+    .btn {
+      flex: 1;
+      padding: 6px 10px;
+      font-size: 0.9rem;
+    }
+  }
+
+
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .controls {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+  
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+  
+  .btn:active {
+    transform: translateY(1px);
+  }
+  
+  .reset-btn {
+    background-color: #0d6efd;
+  }
+  
+  .reset-btn:hover {
+    background-color: #0b5ed7;
+  }
+  
+  .add-btn {
+    background-color: #0d6efd;
+  }
+  
+  .add-btn:hover {
+    background-color: #0b5ed7;
+  }
+  
+  .counters-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  @media (max-width: 600px) {
+    .container {
+      padding: 0 10px;
+    }
+    
+    .controls {
+      justify-content: center;
+    }
+  }
